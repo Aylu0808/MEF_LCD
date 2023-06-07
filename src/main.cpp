@@ -14,24 +14,50 @@ volatile int estado = 1;
 
 volatile int contador = 0;
 
-
 void lcd1(){
+  if(digitalRead(inicio) == HIGH)
+    estado = 1;
+  else{
+    t = 0;
+    estado = 2;
+  }
+}
+void lcd2(){
+  if(t <= 0)
+    estado = 3;
+  else
+    estado = 2;
+}
+void lcd3(){
+  if(cantViajes != numViajes)
+    estado = 3;
+  else
+    estado = 4;
+}
+void lcd4(){
+  if(f_finMensaje == FALSE)
+    estado = 4;
+  else
+    estado = 1;
+}
+
+void outLcd1(){
   lcd.setCursor(0,0);
   lcd.print("Cant de viajes: ");
 }
-void lcd2(){
+void outLcd2(){
   lcd.setCursor(0,0);
   lcd.print("El juego inicia");
   lcd.setCursor(0, 1);
   lcd.print("     en: ");
 }
-void lcd3(){
+void outLcd3(){
   lcd.setCursor(0, 0);
   lcd.print("    A JUGAR!    ");
   lcd.setCursor(0, 1);
   lcd.print("                ");
 }
-void lcd4(){
+void outLcd4(){
   lcd.setCursor(0, 0);
   lcd.print("  Felicidades!  ");
   lcd.setCursor(0, 1);
@@ -54,32 +80,10 @@ void setup() {
 
 void loop() {
   switch(estado){
-    case 1: lcd1(); break;
-    case 2: lcd2(); break;
-    case 3: lcde3(); break;
+    case 1: lcd1(); outLcd1(); break;
+    case 2: lcd2(); outLcd1(); break;
+    case 3: lcd3(); outLcd1(); break;
+    case 4: lcd4(); outLcd1(); break; 
+    default: lcd.print("Ni idea");
   }
-}
-if(digitalRead(inicio) == HIGH){
-  estado = 1;
-}
-else{
-  estado = 2;
-}
-if(t <= 0){
-  estado = 3;
-}
-else{
-  estado = 2;
-}
-if(cantViajes != numViajes){
-  estado = 3;
-}
-else{
-  estado = 4;
-}
-if(f_finMensaje == FALSE){
-  estado = 4;
-}
-else{
-  estado = 1;
 }
