@@ -1,11 +1,14 @@
 #include <Arduino.h>
 #include <LiquidCrystal_I2C.h>
-/*Esto hay que chekearlo!!!!!!!!!!*/
+/*Es un codigo de "prueba" es la MEF que se podria utilizar para imprimir el lcd
+  Estan aclaradas las condiciones para cambiar de estado
+  No se puede probar porque esas condiciones vienen del programa general
+  Tambien se deberian utilizar retenciones de pulsadores que aca no se implementan
+*/
 #define FALSE 0
 #define TRUE 1
 
 #define puls 10
-
 
 LiquidCrystal_I2C lcd(0x3F, 16, 2);
 
@@ -15,7 +18,7 @@ volatile int estado = 1;
 volatile int contador = 0;
 
 void lcd1(){
-  if(digitalRead(inicio) == HIGH)
+  if(digitalRead(puls) == HIGH)
     estado = 1;
   else{
     t = 0;
@@ -86,4 +89,7 @@ void loop() {
     case 4: lcd4(); outLcd1(); break; 
     default: lcd.print("Ni idea");
   }
+}
+void contando(){
+  t++;
 }
