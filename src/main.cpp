@@ -3,7 +3,7 @@
 /*Es un codigo de "prueba" es la MEF que se podria utilizar para imprimir el lcd
   Estan aclaradas las condiciones para cambiar de estado
   No se puede probar porque esas condiciones vienen del programa general
-  Tambien se deberian utilizar retenciones de pulsadores que aca no se implementan
+  Tambien se deberian utilizar retenciones de pulsadores que aca no se implementan 
 */
 #define FALSE 0
 #define TRUE 1
